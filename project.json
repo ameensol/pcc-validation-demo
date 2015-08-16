@@ -2,28 +2,18 @@
 	"objName": "Stage",
 	"variables": [
 		{
-			"name": "LEFT PLAYER",
-			"value": 0,
+			"name": "Player 1 Score",
+			"value": 1,
 			"isPersistent": false
 		},
 		{
-			"name": "RIGHT PLAYER",
-			"value": 0,
+			"name": "Player 2 Score",
+			"value": 1,
 			"isPersistent": false
 		},
 		{
-			"name": "Speed",
-			"value": "5",
-			"isPersistent": false
-		},
-		{
-			"name": "Double ball",
-			"value": "False",
-			"isPersistent": false
-		},
-		{
-			"name": "Triple Ball",
-			"value": "False",
+			"name": "speed",
+			"value": "10",
 			"isPersistent": false
 		}
 	],
@@ -39,33 +29,9 @@
 	],
 	"costumes": [
 		{
-			"costumeName": "soccer-field-zdmqnjv9",
+			"costumeName": "stars",
 			"baseLayerID": -1,
-			"baseLayerMD5": "7ed8a733a55d2053c5c5f47f37587e96.png",
-			"bitmapResolution": 2,
-			"rotationCenterX": 480,
-			"rotationCenterY": 360
-		},
-		{
-			"costumeName": "LEFT WINS",
-			"baseLayerID": -1,
-			"baseLayerMD5": "29d53e1fe2d75147b67f42f3ced86d75.png",
-			"bitmapResolution": 2,
-			"rotationCenterX": 480,
-			"rotationCenterY": 360
-		},
-		{
-			"costumeName": "RIGHT WINS",
-			"baseLayerID": -1,
-			"baseLayerMD5": "1e3b342ab4ea9feb109a2328b8a6b150.png",
-			"bitmapResolution": 2,
-			"rotationCenterX": 480,
-			"rotationCenterY": 360
-		},
-		{
-			"costumeName": "TIE",
-			"baseLayerID": -1,
-			"baseLayerMD5": "f683e9b6d8df94dc0008eec647d99022.png",
+			"baseLayerMD5": "2ce76e18cc45680f501df534ae48838e.png",
 			"bitmapResolution": 2,
 			"rotationCenterX": 480,
 			"rotationCenterY": 360
@@ -78,21 +44,14 @@
 	"videoAlpha": 0.5,
 	"children": [
 		{
-			"target": "Soccer Ball",
-			"cmd": "heading",
-			"param": null,
-			"color": 4877524,
-			"label": "Soccer Ball: direction",
-			"mode": 1,
-			"sliderMin": 0,
-			"sliderMax": 100,
-			"isDiscrete": true,
-			"x": 5,
-			"y": 86,
-			"visible": false
-		},
-		{
-			"objName": "Soccer Ball",
+			"objName": "Player 2",
+			"variables": [
+				{
+					"name": "Player 2 score",
+					"value": 0,
+					"isPersistent": false
+				}
+			],
 			"scripts": [
 				[
 					10,
@@ -102,505 +61,20 @@
 							"whenGreenFlag"
 						],
 						[
-							"startScene",
-							"soccer-field-zdmqnjv9"
-						],
-						[
 							"setVar:to:",
-							"LEFT PLAYER",
+							"Player 2 score",
 							0
 						],
 						[
-							"setVar:to:",
-							"RIGHT PLAYER",
-							0
-						],
-						[
-							"broadcast:",
-							"Start again"
+							"gotoX:y:",
+							220,
+							24
 						]
 					]
 				],
 				[
-					708,
 					10,
-					[
-						[
-							"whenGreenFlag"
-						],
-						[
-							"doForever",
-							[
-								[
-									"doIf",
-									[
-										"=",
-										[
-											"readVariable",
-											"RIGHT PLAYER"
-										],
-										"10"
-									],
-									[
-										[
-											"startScene",
-											"RIGHT WINS"
-										],
-										[
-											"stopScripts",
-											"all"
-										]
-									]
-								]
-							]
-						]
-					]
-				],
-				[
-					420,
-					10,
-					[
-						[
-							"whenIReceive",
-							"Reset"
-						],
-						[
-							"gotoX:y:",
-							0,
-							0
-						],
-						[
-							"heading:",
-							[
-								"randomFrom:to:",
-								25,
-								165
-							]
-						],
-						[
-							"setVar:to:",
-							"Speed",
-							"5"
-						],
-						[
-							"wait:elapsed:from:",
-							3
-						],
-						[
-							"broadcast:",
-							"Start again"
-						]
-					]
-				],
-				[
-					708,
-					187,
-					[
-						[
-							"whenGreenFlag"
-						],
-						[
-							"doForever",
-							[
-								[
-									"doIf",
-									[
-										"=",
-										[
-											"readVariable",
-											"LEFT PLAYER"
-										],
-										"10"
-									],
-									[
-										[
-											"startScene",
-											"LEFT WINS"
-										],
-										[
-											"stopScripts",
-											"all"
-										]
-									]
-								]
-							]
-						]
-					]
-				],
-				[
-					18,
-					165,
-					[
-						[
-							"whenIReceive",
-							"Start again"
-						],
-						[
-							"gotoX:y:",
-							0,
-							0
-						],
-						[
-							"wait:elapsed:from:",
-							3
-						],
-						[
-							"heading:",
-							[
-								"randomFrom:to:",
-								25,
-								155
-							]
-						],
-						[
-							"setVar:to:",
-							"Speed",
-							"5"
-						],
-						[
-							"doUntil",
-							[
-								"|",
-								[
-									">",
-									"-220",
-									[
-										"xpos"
-									]
-								],
-								[
-									"<",
-									"225",
-									[
-										"xpos"
-									]
-								]
-							],
-							[
-								[
-									"forward:",
-									[
-										"readVariable",
-										"Speed"
-									]
-								],
-								[
-									"bounceOffEdge"
-								],
-								[
-									"doIf",
-									[
-										"|",
-										[
-											"touching:",
-											"paddle2"
-										],
-										[
-											"touching:",
-											"paddle3"
-										]
-									],
-									[
-										[
-											"heading:",
-											[
-												"*",
-												[
-													"heading"
-												],
-												-1
-											]
-										]
-									]
-								]
-							]
-						],
-						[
-							"doForever",
-							[
-								[
-									"doIf",
-									[
-										">",
-										"-220",
-										[
-											"xpos"
-										]
-									],
-									[
-										[
-											"changeVar:by:",
-											"RIGHT PLAYER",
-											1
-										],
-										[
-											"broadcast:",
-											"Reset"
-										],
-										[
-											"stopScripts",
-											"this script"
-										]
-									]
-								],
-								[
-									"doIf",
-									[
-										"<",
-										"225",
-										[
-											"xpos"
-										]
-									],
-									[
-										[
-											"changeVar:by:",
-											"LEFT PLAYER",
-											1
-										],
-										[
-											"broadcast:",
-											"Reset"
-										],
-										[
-											"stopScripts",
-											"this script"
-										]
-									]
-								]
-							]
-						]
-					]
-				],
-				[
-					707,
-					390,
-					[
-						[
-							"whenGreenFlag"
-						],
-						[
-							"doForever",
-							[
-								[
-									"doIf",
-									[
-										"&",
-										[
-											"=",
-											[
-												"readVariable",
-												"LEFT PLAYER"
-											],
-											"10"
-										],
-										[
-											"=",
-											[
-												"readVariable",
-												"RIGHT PLAYER"
-											],
-											"10"
-										]
-									],
-									[
-										[
-											"startScene",
-											"TIE"
-										],
-										[
-											"stopScripts",
-											"all"
-										]
-									]
-								]
-							]
-						]
-					]
-				]
-			],
-			"sounds": [
-				{
-					"soundName": "drum buzz",
-					"soundID": -1,
-					"md5": "3650dc4262bcc5010c0d8fa8d7c670cf.wav",
-					"sampleCount": 5742,
-					"rate": 11025,
-					"format": ""
-				}
-			],
-			"costumes": [
-				{
-					"costumeName": "soccer ball",
-					"baseLayerID": -1,
-					"baseLayerMD5": "5bc9afa57728504d6e3ff9b69a5ac132.svg",
-					"bitmapResolution": 1,
-					"rotationCenterX": 12,
-					"rotationCenterY": 13
-				}
-			],
-			"currentCostumeIndex": 0,
-			"scratchX": -105.63110162682531,
-			"scratchY": -155.51582875031212,
-			"scale": 1,
-			"direction": -28,
-			"rotationStyle": "none",
-			"isDraggable": false,
-			"indexInLibrary": 2,
-			"visible": true,
-			"spriteInfo": {}
-		},
-		{
-			"objName": "paddle2",
-			"scripts": [
-				[
-					20,
-					12,
-					[
-						[
-							"whenKeyPressed",
-							"w"
-						],
-						[
-							"doForever",
-							[
-								[
-									"doIf",
-									[
-										"keyPressed:",
-										"w"
-									],
-									[
-										[
-											"changeYposBy:",
-											20
-										]
-									]
-								]
-							]
-						]
-					]
-				],
-				[
-					18,
-					159,
-					[
-						[
-							"whenKeyPressed",
-							"s"
-						],
-						[
-							"doForever",
-							[
-								[
-									"doIf",
-									[
-										"keyPressed:",
-										"s"
-									],
-									[
-										[
-											"changeYposBy:",
-											-20
-										]
-									]
-								]
-							]
-						]
-					]
-				],
-				[
-					306,
-					22,
-					[
-						[
-							"whenGreenFlag"
-						],
-						[
-							"gotoX:y:",
-							-196,
-							0
-						],
-						[
-							"doForever",
-							[
-								[
-									"bounceOffEdge"
-								],
-								[
-									"heading:",
-									180
-								]
-							]
-						]
-					]
-				]
-			],
-			"sounds": [
-				{
-					"soundName": "pop",
-					"soundID": -1,
-					"md5": "83a9787d4cb6f3b7632b4ddfebf74367.wav",
-					"sampleCount": 258,
-					"rate": 11025,
-					"format": ""
-				}
-			],
-			"costumes": [
-				{
-					"costumeName": "button3-a",
-					"baseLayerID": -1,
-					"baseLayerMD5": "7632f7d66751b61f02c0a6129fd9fd0a.svg",
-					"bitmapResolution": 1,
-					"rotationCenterX": 58,
-					"rotationCenterY": 12
-				}
-			],
-			"currentCostumeIndex": 0,
-			"scratchX": -196,
-			"scratchY": 0,
-			"scale": 1,
-			"direction": 180,
-			"rotationStyle": "normal",
-			"isDraggable": false,
-			"indexInLibrary": 1,
-			"visible": true,
-			"spriteInfo": {}
-		},
-		{
-			"objName": "paddle3",
-			"scripts": [
-				[
-					20,
-					12,
-					[
-						[
-							"whenKeyPressed",
-							"up arrow"
-						],
-						[
-							"doForever",
-							[
-								[
-									"doIf",
-									[
-										"keyPressed:",
-										"up arrow"
-									],
-									[
-										[
-											"changeYposBy:",
-											20
-										]
-									]
-								]
-							]
-						]
-					]
-				],
-				[
-					18,
-					159,
+					105,
 					[
 						[
 							"whenKeyPressed",
@@ -617,8 +91,15 @@
 									],
 									[
 										[
-											"changeYposBy:",
-											-20
+											"forward:",
+											[
+												"/",
+												[
+													"readVariable",
+													"speed"
+												],
+												-1.5
+											]
 										]
 									]
 								]
@@ -627,26 +108,35 @@
 					]
 				],
 				[
-					306,
-					22,
+					275,
+					10,
 					[
 						[
-							"whenGreenFlag"
-						],
-						[
-							"gotoX:y:",
-							198,
-							0
+							"whenKeyPressed",
+							"up arrow"
 						],
 						[
 							"doForever",
 							[
 								[
-									"bounceOffEdge"
-								],
-								[
-									"heading:",
-									180
+									"doIf",
+									[
+										"keyPressed:",
+										"up arrow"
+									],
+									[
+										[
+											"forward:",
+											[
+												"/",
+												[
+													"readVariable",
+													"speed"
+												],
+												1.5
+											]
+										]
+									]
 								]
 							]
 						]
@@ -665,19 +155,150 @@
 			],
 			"costumes": [
 				{
-					"costumeName": "button3-a",
+					"costumeName": "bumper",
 					"baseLayerID": -1,
-					"baseLayerMD5": "d2866ed0baddbd8da0c25a4199214c2c.svg",
-					"bitmapResolution": 1,
-					"rotationCenterX": 57,
-					"rotationCenterY": 13
+					"baseLayerMD5": "7683f86856278582530ecfca7e043b5c.png",
+					"bitmapResolution": 2,
+					"rotationCenterX": 144,
+					"rotationCenterY": 53
 				}
 			],
 			"currentCostumeIndex": 0,
-			"scratchX": 198,
-			"scratchY": 0,
-			"scale": 1,
-			"direction": 180,
+			"scratchX": 220,
+			"scratchY": 48.66666666666674,
+			"scale": 0.7000000000000003,
+			"direction": 0,
+			"rotationStyle": "normal",
+			"isDraggable": false,
+			"indexInLibrary": 2,
+			"visible": true,
+			"spriteInfo": {}
+		},
+		{
+			"objName": "Player 1",
+			"variables": [
+				{
+					"name": "Player 1 score",
+					"value": 0,
+					"isPersistent": false
+				}
+			],
+			"scripts": [
+				[
+					10,
+					10,
+					[
+						[
+							"whenGreenFlag"
+						],
+						[
+							"setVar:to:",
+							"Player 1 score",
+							0
+						],
+						[
+							"gotoX:y:",
+							-220,
+							24
+						]
+					]
+				],
+				[
+					230,
+					10,
+					[
+						[
+							"whenKeyPressed",
+							"w"
+						],
+						[
+							"doForever",
+							[
+								[
+									"doIf",
+									[
+										"keyPressed:",
+										"w"
+									],
+									[
+										[
+											"forward:",
+											[
+												"/",
+												[
+													"readVariable",
+													"speed"
+												],
+												1.5
+											]
+										]
+									]
+								]
+							]
+						]
+					]
+				],
+				[
+					10,
+					105,
+					[
+						[
+							"whenKeyPressed",
+							"s"
+						],
+						[
+							"doForever",
+							[
+								[
+									"doIf",
+									[
+										"keyPressed:",
+										"s"
+									],
+									[
+										[
+											"forward:",
+											[
+												"/",
+												[
+													"readVariable",
+													"speed"
+												],
+												-1.5
+											]
+										]
+									]
+								]
+							]
+						]
+					]
+				]
+			],
+			"sounds": [
+				{
+					"soundName": "pop",
+					"soundID": -1,
+					"md5": "83a9787d4cb6f3b7632b4ddfebf74367.wav",
+					"sampleCount": 258,
+					"rate": 11025,
+					"format": ""
+				}
+			],
+			"costumes": [
+				{
+					"costumeName": "bumper",
+					"baseLayerID": -1,
+					"baseLayerMD5": "7998f6c84f48d728ffe7d6725d9e819d.png",
+					"bitmapResolution": 2,
+					"rotationCenterX": 144,
+					"rotationCenterY": 39
+				}
+			],
+			"currentCostumeIndex": 0,
+			"scratchX": -220,
+			"scratchY": 39.3333333333333,
+			"scale": 0.7000000000000003,
+			"direction": 0,
 			"rotationStyle": "normal",
 			"isDraggable": false,
 			"indexInLibrary": 3,
@@ -685,53 +306,39 @@
 			"spriteInfo": {}
 		},
 		{
-			"target": "Stage",
-			"cmd": "getVar:",
-			"param": "LEFT PLAYER",
-			"color": 15629590,
-			"label": "LEFT PLAYER",
-			"mode": 2,
-			"sliderMin": 0,
-			"sliderMax": 100,
-			"isDiscrete": true,
-			"x": -1,
-			"y": -3,
-			"visible": true
-		},
-		{
-			"target": "Stage",
-			"cmd": "getVar:",
-			"param": "RIGHT PLAYER",
-			"color": 15629590,
-			"label": "RIGHT PLAYER",
-			"mode": 2,
-			"sliderMin": 0,
-			"sliderMax": 100,
-			"isDiscrete": true,
-			"x": 430,
-			"y": -4,
-			"visible": true
-		},
-		{
-			"target": "Stage",
-			"cmd": "getVar:",
-			"param": "Double ball",
-			"color": 15629590,
-			"label": "Double ball",
+			"target": "Ball",
+			"cmd": "heading",
+			"param": null,
+			"color": 4877524,
+			"label": "Ball: direction",
 			"mode": 1,
 			"sliderMin": 0,
 			"sliderMax": 100,
 			"isDiscrete": true,
 			"x": 5,
-			"y": 34,
+			"y": 32,
 			"visible": false
 		},
 		{
-			"target": "Stage",
-			"cmd": "getVar:",
-			"param": "Triple Ball",
-			"color": 15629590,
-			"label": "Triple Ball",
+			"target": "Player 1",
+			"cmd": "heading",
+			"param": null,
+			"color": 4877524,
+			"label": "Player 1: direction",
+			"mode": 1,
+			"sliderMin": 0,
+			"sliderMax": 100,
+			"isDiscrete": true,
+			"x": 5,
+			"y": 86,
+			"visible": false
+		},
+		{
+			"target": "Player 2",
+			"cmd": "heading",
+			"param": null,
+			"color": 4877524,
+			"label": "Player 2: direction",
 			"mode": 1,
 			"sliderMin": 0,
 			"sliderMax": 100,
@@ -741,28 +348,341 @@
 			"visible": false
 		},
 		{
-			"target": "Stage",
+			"target": "Player 1",
 			"cmd": "getVar:",
-			"param": "Speed",
+			"param": "Player 1 score",
 			"color": 15629590,
-			"label": "Speed",
+			"label": "Player 1: Player 1 score",
 			"mode": 1,
 			"sliderMin": 0,
 			"sliderMax": 100,
 			"isDiscrete": true,
-			"x": 5,
-			"y": 59,
+			"x": 242,
+			"y": 0,
+			"visible": false
+		},
+		{
+			"target": "Player 2",
+			"cmd": "getVar:",
+			"param": "Player 2 score",
+			"color": 15629590,
+			"label": "Player 2: Player 2 score",
+			"mode": 1,
+			"sliderMin": 0,
+			"sliderMax": 100,
+			"isDiscrete": true,
+			"x": 149,
+			"y": 326,
+			"visible": false
+		},
+		{
+			"target": "Stage",
+			"cmd": "getVar:",
+			"param": "Player 2 Score",
+			"color": 15629590,
+			"label": "Player 2 Score",
+			"mode": 1,
+			"sliderMin": 0,
+			"sliderMax": 100,
+			"isDiscrete": true,
+			"x": 166,
+			"y": 336,
 			"visible": true
+		},
+		{
+			"target": "Stage",
+			"cmd": "getVar:",
+			"param": "speed",
+			"color": 15629590,
+			"label": "speed",
+			"mode": 1,
+			"sliderMin": 0,
+			"sliderMax": 100,
+			"isDiscrete": true,
+			"x": 24,
+			"y": 92,
+			"visible": false
+		},
+		{
+			"target": "Stage",
+			"cmd": "getVar:",
+			"param": "Player 1 Score",
+			"color": 15629590,
+			"label": "Player 1 Score",
+			"mode": 1,
+			"sliderMin": 0,
+			"sliderMax": 100,
+			"isDiscrete": true,
+			"x": 170,
+			"y": 8,
+			"visible": true
+		},
+		{
+			"objName": "Ball",
+			"scripts": [
+				[
+					10,
+					10,
+					[
+						[
+							"whenGreenFlag"
+						],
+						[
+							"heading:",
+							30
+						],
+						[
+							"gotoX:y:",
+							0,
+							0
+						],
+						[
+							"setVar:to:",
+							"Player 1 Score",
+							0
+						],
+						[
+							"setVar:to:",
+							"Player 2 Score",
+							0
+						],
+						[
+							"setVar:to:",
+							"speed",
+							"10"
+						],
+						[
+							"say:duration:elapsed:from:",
+							"Welcome. My name is Falafel the Waffle, and today I will be your ball!",
+							2
+						],
+						[
+							"say:duration:elapsed:from:",
+							"Ready!",
+							1
+						],
+						[
+							"say:duration:elapsed:from:",
+							"Go!",
+							1
+						],
+						[
+							"broadcast:",
+							"Start"
+						]
+					]
+				],
+				[
+					10,
+					261,
+					[
+						[
+							"whenIReceive",
+							"Reset"
+						],
+						[
+							"setVar:to:",
+							"speed",
+							"10"
+						],
+						[
+							"gotoX:y:",
+							0,
+							0
+						],
+						[
+							"say:duration:elapsed:from:",
+							"Ready!",
+							1
+						],
+						[
+							"say:duration:elapsed:from:",
+							"Go!",
+							1
+						],
+						[
+							"broadcast:",
+							"Start"
+						]
+					]
+				],
+				[
+					197,
+					17,
+					[
+						[
+							"whenIReceive",
+							"Start"
+						],
+						[
+							"doUntil",
+							[
+								"|",
+								[
+									">",
+									[
+										"getAttribute:of:",
+										"x position",
+										"Ball"
+									],
+									"190"
+								],
+								[
+									"<",
+									[
+										"getAttribute:of:",
+										"x position",
+										"Ball"
+									],
+									"-190"
+								]
+							],
+							[
+								[
+									"forward:",
+									[
+										"readVariable",
+										"speed"
+									]
+								],
+								[
+									"doIf",
+									[
+										"|",
+										[
+											"touching:",
+											"Player 1"
+										],
+										[
+											"touching:",
+											"Player 2"
+										]
+									],
+									[
+										[
+											"heading:",
+											[
+												"*",
+												[
+													"heading"
+												],
+												-1
+											]
+										],
+										[
+											"forward:",
+											[
+												"readVariable",
+												"speed"
+											]
+										],
+										[
+											"changeVar:by:",
+											"speed",
+											1
+										]
+									]
+								],
+								[
+									"bounceOffEdge"
+								]
+							]
+						],
+						[
+							"doIf",
+							[
+								">",
+								[
+									"getAttribute:of:",
+									"x position",
+									"Ball"
+								],
+								"190"
+							],
+							[
+								[
+									"changeVar:by:",
+									"Player 1 Score",
+									1
+								],
+								[
+									"say:duration:elapsed:from:",
+									"Player 1 Point!",
+									2
+								]
+							]
+						],
+						[
+							"doIf",
+							[
+								"<",
+								[
+									"getAttribute:of:",
+									"x position",
+									"Ball"
+								],
+								"-190"
+							],
+							[
+								[
+									"changeVar:by:",
+									"Player 2 Score",
+									1
+								],
+								[
+									"say:duration:elapsed:from:",
+									"Player 2 Point!",
+									2
+								]
+							]
+						],
+						[
+							"broadcast:",
+							"Reset"
+						]
+					]
+				]
+			],
+			"sounds": [
+				{
+					"soundName": "pop",
+					"soundID": -1,
+					"md5": "83a9787d4cb6f3b7632b4ddfebf74367.wav",
+					"sampleCount": 258,
+					"rate": 11025,
+					"format": ""
+				}
+			],
+			"costumes": [
+				{
+					"costumeName": "falafel",
+					"baseLayerID": -1,
+					"baseLayerMD5": "4363e71c07464f2d71a9d91c1fb09205.png",
+					"bitmapResolution": 2,
+					"rotationCenterX": 120,
+					"rotationCenterY": 209
+				}
+			],
+			"currentCostumeIndex": 0,
+			"scratchX": -10,
+			"scratchY": 27,
+			"scale": 0.3,
+			"direction": 149.99999999999994,
+			"rotationStyle": "normal",
+			"isDraggable": false,
+			"indexInLibrary": 1,
+			"visible": true,
+			"spriteInfo": {}
 		}
 	],
 	"info": {
+		"scriptCount": 9,
+		"flashVersion": "LNX 17,0,0,188",
+		"userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36",
+		"projectID": "12150382",
+		"videoOn": false,
 		"hasCloudData": false,
-		"projectID": "72900730",
-		"swfVersion": "v439",
 		"spriteCount": 3,
-		"flashVersion": "MAC 18,0,0,209",
-		"scriptCount": 12,
-		"userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36",
-		"videoOn": false
+		"swfVersion": "v439"
 	}
 }

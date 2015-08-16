@@ -11,8 +11,9 @@ Scratch.createUserSession('redleader', '5paceBAR', function(err, user) {
 */
 
 // 73253520 - empty
+// 12150382 - jh validation demo pong
 
-Scratch.getProject(72900730, function (err, project) {
+Scratch.getProject(12150382, function (err, project) {
   console.log(project)
   fs.writeFileSync('./project.json', JSON.stringify(project, null, '\t'))
 })
