@@ -1,1 +1,768 @@
-{"objName":"Stage","variables":[{"name":"LEFT PLAYER","value":0,"isPersistent":false},{"name":"RIGHT PLAYER","value":0,"isPersistent":false},{"name":"Speed","value":"5","isPersistent":false},{"name":"Double ball","value":"False","isPersistent":false},{"name":"Triple Ball","value":"False","isPersistent":false}],"sounds":[{"soundName":"pop","soundID":-1,"md5":"83a9787d4cb6f3b7632b4ddfebf74367.wav","sampleCount":258,"rate":11025,"format":""}],"costumes":[{"costumeName":"soccer-field-zdmqnjv9","baseLayerID":-1,"baseLayerMD5":"7ed8a733a55d2053c5c5f47f37587e96.png","bitmapResolution":2,"rotationCenterX":480,"rotationCenterY":360},{"costumeName":"LEFT WINS","baseLayerID":-1,"baseLayerMD5":"29d53e1fe2d75147b67f42f3ced86d75.png","bitmapResolution":2,"rotationCenterX":480,"rotationCenterY":360},{"costumeName":"RIGHT WINS","baseLayerID":-1,"baseLayerMD5":"1e3b342ab4ea9feb109a2328b8a6b150.png","bitmapResolution":2,"rotationCenterX":480,"rotationCenterY":360},{"costumeName":"TIE","baseLayerID":-1,"baseLayerMD5":"f683e9b6d8df94dc0008eec647d99022.png","bitmapResolution":2,"rotationCenterX":480,"rotationCenterY":360}],"currentCostumeIndex":0,"penLayerMD5":"5c81a336fab8be57adc039a8a2b33ca9.png","penLayerID":-1,"tempoBPM":60,"videoAlpha":0.5,"children":[{"target":"Soccer Ball","cmd":"heading","param":null,"color":4877524,"label":"Soccer Ball: direction","mode":1,"sliderMin":0,"sliderMax":100,"isDiscrete":true,"x":5,"y":86,"visible":false},{"objName":"Soccer Ball","scripts":[[10,10,[["whenGreenFlag"],["startScene","soccer-field-zdmqnjv9"],["setVar:to:","LEFT PLAYER",0],["setVar:to:","RIGHT PLAYER",0],["broadcast:","Start again"]]],[708,10,[["whenGreenFlag"],["doForever",[["doIf",["=",["readVariable","RIGHT PLAYER"],"10"],[["startScene","RIGHT WINS"],["stopScripts","all"]]]]]]],[420,10,[["whenIReceive","Reset"],["gotoX:y:",0,0],["heading:",["randomFrom:to:",25,165]],["setVar:to:","Speed","5"],["wait:elapsed:from:",3],["broadcast:","Start again"]]],[708,187,[["whenGreenFlag"],["doForever",[["doIf",["=",["readVariable","LEFT PLAYER"],"10"],[["startScene","LEFT WINS"],["stopScripts","all"]]]]]]],[18,165,[["whenIReceive","Start again"],["gotoX:y:",0,0],["wait:elapsed:from:",3],["heading:",["randomFrom:to:",25,155]],["setVar:to:","Speed","5"],["doUntil",["|",[">","-220",["xpos"]],["<","225",["xpos"]]],[["forward:",["readVariable","Speed"]],["bounceOffEdge"],["doIf",["|",["touching:","paddle2"],["touching:","paddle3"]],[["heading:",["*",["heading"],-1]]]]]],["doForever",[["doIf",[">","-220",["xpos"]],[["changeVar:by:","RIGHT PLAYER",1],["broadcast:","Reset"],["stopScripts","this script"]]],["doIf",["<","225",["xpos"]],[["changeVar:by:","LEFT PLAYER",1],["broadcast:","Reset"],["stopScripts","this script"]]]]]]],[707,390,[["whenGreenFlag"],["doForever",[["doIf",["&",["=",["readVariable","LEFT PLAYER"],"10"],["=",["readVariable","RIGHT PLAYER"],"10"]],[["startScene","TIE"],["stopScripts","all"]]]]]]]],"sounds":[{"soundName":"drum buzz","soundID":-1,"md5":"3650dc4262bcc5010c0d8fa8d7c670cf.wav","sampleCount":5742,"rate":11025,"format":""}],"costumes":[{"costumeName":"soccer ball","baseLayerID":-1,"baseLayerMD5":"5bc9afa57728504d6e3ff9b69a5ac132.svg","bitmapResolution":1,"rotationCenterX":12,"rotationCenterY":13}],"currentCostumeIndex":0,"scratchX":-105.63110162682531,"scratchY":-155.51582875031212,"scale":1,"direction":-28,"rotationStyle":"none","isDraggable":false,"indexInLibrary":2,"visible":true,"spriteInfo":{}},{"objName":"paddle2","scripts":[[20,12,[["whenKeyPressed","w"],["doForever",[["doIf",["keyPressed:","w"],[["changeYposBy:",20]]]]]]],[18,159,[["whenKeyPressed","s"],["doForever",[["doIf",["keyPressed:","s"],[["changeYposBy:",-20]]]]]]],[306,22,[["whenGreenFlag"],["gotoX:y:",-196,0],["doForever",[["bounceOffEdge"],["heading:",180]]]]]],"sounds":[{"soundName":"pop","soundID":-1,"md5":"83a9787d4cb6f3b7632b4ddfebf74367.wav","sampleCount":258,"rate":11025,"format":""}],"costumes":[{"costumeName":"button3-a","baseLayerID":-1,"baseLayerMD5":"7632f7d66751b61f02c0a6129fd9fd0a.svg","bitmapResolution":1,"rotationCenterX":58,"rotationCenterY":12}],"currentCostumeIndex":0,"scratchX":-196,"scratchY":0,"scale":1,"direction":180,"rotationStyle":"normal","isDraggable":false,"indexInLibrary":1,"visible":true,"spriteInfo":{}},{"objName":"paddle3","scripts":[[20,12,[["whenKeyPressed","up arrow"],["doForever",[["doIf",["keyPressed:","up arrow"],[["changeYposBy:",20]]]]]]],[18,159,[["whenKeyPressed","down arrow"],["doForever",[["doIf",["keyPressed:","down arrow"],[["changeYposBy:",-20]]]]]]],[306,22,[["whenGreenFlag"],["gotoX:y:",198,0],["doForever",[["bounceOffEdge"],["heading:",180]]]]]],"sounds":[{"soundName":"pop","soundID":-1,"md5":"83a9787d4cb6f3b7632b4ddfebf74367.wav","sampleCount":258,"rate":11025,"format":""}],"costumes":[{"costumeName":"button3-a","baseLayerID":-1,"baseLayerMD5":"d2866ed0baddbd8da0c25a4199214c2c.svg","bitmapResolution":1,"rotationCenterX":57,"rotationCenterY":13}],"currentCostumeIndex":0,"scratchX":198,"scratchY":0,"scale":1,"direction":180,"rotationStyle":"normal","isDraggable":false,"indexInLibrary":3,"visible":true,"spriteInfo":{}},{"target":"Stage","cmd":"getVar:","param":"LEFT PLAYER","color":15629590,"label":"LEFT PLAYER","mode":2,"sliderMin":0,"sliderMax":100,"isDiscrete":true,"x":-1,"y":-3,"visible":true},{"target":"Stage","cmd":"getVar:","param":"RIGHT PLAYER","color":15629590,"label":"RIGHT PLAYER","mode":2,"sliderMin":0,"sliderMax":100,"isDiscrete":true,"x":430,"y":-4,"visible":true},{"target":"Stage","cmd":"getVar:","param":"Double ball","color":15629590,"label":"Double ball","mode":1,"sliderMin":0,"sliderMax":100,"isDiscrete":true,"x":5,"y":34,"visible":false},{"target":"Stage","cmd":"getVar:","param":"Triple Ball","color":15629590,"label":"Triple Ball","mode":1,"sliderMin":0,"sliderMax":100,"isDiscrete":true,"x":5,"y":113,"visible":false},{"target":"Stage","cmd":"getVar:","param":"Speed","color":15629590,"label":"Speed","mode":1,"sliderMin":0,"sliderMax":100,"isDiscrete":true,"x":5,"y":59,"visible":true}],"info":{"hasCloudData":false,"projectID":"72900730","swfVersion":"v439","spriteCount":3,"flashVersion":"MAC 18,0,0,209","scriptCount":12,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36","videoOn":false}}
+{
+	"objName": "Stage",
+	"variables": [
+		{
+			"name": "LEFT PLAYER",
+			"value": 0,
+			"isPersistent": false
+		},
+		{
+			"name": "RIGHT PLAYER",
+			"value": 0,
+			"isPersistent": false
+		},
+		{
+			"name": "Speed",
+			"value": "5",
+			"isPersistent": false
+		},
+		{
+			"name": "Double ball",
+			"value": "False",
+			"isPersistent": false
+		},
+		{
+			"name": "Triple Ball",
+			"value": "False",
+			"isPersistent": false
+		}
+	],
+	"sounds": [
+		{
+			"soundName": "pop",
+			"soundID": -1,
+			"md5": "83a9787d4cb6f3b7632b4ddfebf74367.wav",
+			"sampleCount": 258,
+			"rate": 11025,
+			"format": ""
+		}
+	],
+	"costumes": [
+		{
+			"costumeName": "soccer-field-zdmqnjv9",
+			"baseLayerID": -1,
+			"baseLayerMD5": "7ed8a733a55d2053c5c5f47f37587e96.png",
+			"bitmapResolution": 2,
+			"rotationCenterX": 480,
+			"rotationCenterY": 360
+		},
+		{
+			"costumeName": "LEFT WINS",
+			"baseLayerID": -1,
+			"baseLayerMD5": "29d53e1fe2d75147b67f42f3ced86d75.png",
+			"bitmapResolution": 2,
+			"rotationCenterX": 480,
+			"rotationCenterY": 360
+		},
+		{
+			"costumeName": "RIGHT WINS",
+			"baseLayerID": -1,
+			"baseLayerMD5": "1e3b342ab4ea9feb109a2328b8a6b150.png",
+			"bitmapResolution": 2,
+			"rotationCenterX": 480,
+			"rotationCenterY": 360
+		},
+		{
+			"costumeName": "TIE",
+			"baseLayerID": -1,
+			"baseLayerMD5": "f683e9b6d8df94dc0008eec647d99022.png",
+			"bitmapResolution": 2,
+			"rotationCenterX": 480,
+			"rotationCenterY": 360
+		}
+	],
+	"currentCostumeIndex": 0,
+	"penLayerMD5": "5c81a336fab8be57adc039a8a2b33ca9.png",
+	"penLayerID": -1,
+	"tempoBPM": 60,
+	"videoAlpha": 0.5,
+	"children": [
+		{
+			"target": "Soccer Ball",
+			"cmd": "heading",
+			"param": null,
+			"color": 4877524,
+			"label": "Soccer Ball: direction",
+			"mode": 1,
+			"sliderMin": 0,
+			"sliderMax": 100,
+			"isDiscrete": true,
+			"x": 5,
+			"y": 86,
+			"visible": false
+		},
+		{
+			"objName": "Soccer Ball",
+			"scripts": [
+				[
+					10,
+					10,
+					[
+						[
+							"whenGreenFlag"
+						],
+						[
+							"startScene",
+							"soccer-field-zdmqnjv9"
+						],
+						[
+							"setVar:to:",
+							"LEFT PLAYER",
+							0
+						],
+						[
+							"setVar:to:",
+							"RIGHT PLAYER",
+							0
+						],
+						[
+							"broadcast:",
+							"Start again"
+						]
+					]
+				],
+				[
+					708,
+					10,
+					[
+						[
+							"whenGreenFlag"
+						],
+						[
+							"doForever",
+							[
+								[
+									"doIf",
+									[
+										"=",
+										[
+											"readVariable",
+											"RIGHT PLAYER"
+										],
+										"10"
+									],
+									[
+										[
+											"startScene",
+											"RIGHT WINS"
+										],
+										[
+											"stopScripts",
+											"all"
+										]
+									]
+								]
+							]
+						]
+					]
+				],
+				[
+					420,
+					10,
+					[
+						[
+							"whenIReceive",
+							"Reset"
+						],
+						[
+							"gotoX:y:",
+							0,
+							0
+						],
+						[
+							"heading:",
+							[
+								"randomFrom:to:",
+								25,
+								165
+							]
+						],
+						[
+							"setVar:to:",
+							"Speed",
+							"5"
+						],
+						[
+							"wait:elapsed:from:",
+							3
+						],
+						[
+							"broadcast:",
+							"Start again"
+						]
+					]
+				],
+				[
+					708,
+					187,
+					[
+						[
+							"whenGreenFlag"
+						],
+						[
+							"doForever",
+							[
+								[
+									"doIf",
+									[
+										"=",
+										[
+											"readVariable",
+											"LEFT PLAYER"
+										],
+										"10"
+									],
+									[
+										[
+											"startScene",
+											"LEFT WINS"
+										],
+										[
+											"stopScripts",
+											"all"
+										]
+									]
+								]
+							]
+						]
+					]
+				],
+				[
+					18,
+					165,
+					[
+						[
+							"whenIReceive",
+							"Start again"
+						],
+						[
+							"gotoX:y:",
+							0,
+							0
+						],
+						[
+							"wait:elapsed:from:",
+							3
+						],
+						[
+							"heading:",
+							[
+								"randomFrom:to:",
+								25,
+								155
+							]
+						],
+						[
+							"setVar:to:",
+							"Speed",
+							"5"
+						],
+						[
+							"doUntil",
+							[
+								"|",
+								[
+									">",
+									"-220",
+									[
+										"xpos"
+									]
+								],
+								[
+									"<",
+									"225",
+									[
+										"xpos"
+									]
+								]
+							],
+							[
+								[
+									"forward:",
+									[
+										"readVariable",
+										"Speed"
+									]
+								],
+								[
+									"bounceOffEdge"
+								],
+								[
+									"doIf",
+									[
+										"|",
+										[
+											"touching:",
+											"paddle2"
+										],
+										[
+											"touching:",
+											"paddle3"
+										]
+									],
+									[
+										[
+											"heading:",
+											[
+												"*",
+												[
+													"heading"
+												],
+												-1
+											]
+										]
+									]
+								]
+							]
+						],
+						[
+							"doForever",
+							[
+								[
+									"doIf",
+									[
+										">",
+										"-220",
+										[
+											"xpos"
+										]
+									],
+									[
+										[
+											"changeVar:by:",
+											"RIGHT PLAYER",
+											1
+										],
+										[
+											"broadcast:",
+											"Reset"
+										],
+										[
+											"stopScripts",
+											"this script"
+										]
+									]
+								],
+								[
+									"doIf",
+									[
+										"<",
+										"225",
+										[
+											"xpos"
+										]
+									],
+									[
+										[
+											"changeVar:by:",
+											"LEFT PLAYER",
+											1
+										],
+										[
+											"broadcast:",
+											"Reset"
+										],
+										[
+											"stopScripts",
+											"this script"
+										]
+									]
+								]
+							]
+						]
+					]
+				],
+				[
+					707,
+					390,
+					[
+						[
+							"whenGreenFlag"
+						],
+						[
+							"doForever",
+							[
+								[
+									"doIf",
+									[
+										"&",
+										[
+											"=",
+											[
+												"readVariable",
+												"LEFT PLAYER"
+											],
+											"10"
+										],
+										[
+											"=",
+											[
+												"readVariable",
+												"RIGHT PLAYER"
+											],
+											"10"
+										]
+									],
+									[
+										[
+											"startScene",
+											"TIE"
+										],
+										[
+											"stopScripts",
+											"all"
+										]
+									]
+								]
+							]
+						]
+					]
+				]
+			],
+			"sounds": [
+				{
+					"soundName": "drum buzz",
+					"soundID": -1,
+					"md5": "3650dc4262bcc5010c0d8fa8d7c670cf.wav",
+					"sampleCount": 5742,
+					"rate": 11025,
+					"format": ""
+				}
+			],
+			"costumes": [
+				{
+					"costumeName": "soccer ball",
+					"baseLayerID": -1,
+					"baseLayerMD5": "5bc9afa57728504d6e3ff9b69a5ac132.svg",
+					"bitmapResolution": 1,
+					"rotationCenterX": 12,
+					"rotationCenterY": 13
+				}
+			],
+			"currentCostumeIndex": 0,
+			"scratchX": -105.63110162682531,
+			"scratchY": -155.51582875031212,
+			"scale": 1,
+			"direction": -28,
+			"rotationStyle": "none",
+			"isDraggable": false,
+			"indexInLibrary": 2,
+			"visible": true,
+			"spriteInfo": {}
+		},
+		{
+			"objName": "paddle2",
+			"scripts": [
+				[
+					20,
+					12,
+					[
+						[
+							"whenKeyPressed",
+							"w"
+						],
+						[
+							"doForever",
+							[
+								[
+									"doIf",
+									[
+										"keyPressed:",
+										"w"
+									],
+									[
+										[
+											"changeYposBy:",
+											20
+										]
+									]
+								]
+							]
+						]
+					]
+				],
+				[
+					18,
+					159,
+					[
+						[
+							"whenKeyPressed",
+							"s"
+						],
+						[
+							"doForever",
+							[
+								[
+									"doIf",
+									[
+										"keyPressed:",
+										"s"
+									],
+									[
+										[
+											"changeYposBy:",
+											-20
+										]
+									]
+								]
+							]
+						]
+					]
+				],
+				[
+					306,
+					22,
+					[
+						[
+							"whenGreenFlag"
+						],
+						[
+							"gotoX:y:",
+							-196,
+							0
+						],
+						[
+							"doForever",
+							[
+								[
+									"bounceOffEdge"
+								],
+								[
+									"heading:",
+									180
+								]
+							]
+						]
+					]
+				]
+			],
+			"sounds": [
+				{
+					"soundName": "pop",
+					"soundID": -1,
+					"md5": "83a9787d4cb6f3b7632b4ddfebf74367.wav",
+					"sampleCount": 258,
+					"rate": 11025,
+					"format": ""
+				}
+			],
+			"costumes": [
+				{
+					"costumeName": "button3-a",
+					"baseLayerID": -1,
+					"baseLayerMD5": "7632f7d66751b61f02c0a6129fd9fd0a.svg",
+					"bitmapResolution": 1,
+					"rotationCenterX": 58,
+					"rotationCenterY": 12
+				}
+			],
+			"currentCostumeIndex": 0,
+			"scratchX": -196,
+			"scratchY": 0,
+			"scale": 1,
+			"direction": 180,
+			"rotationStyle": "normal",
+			"isDraggable": false,
+			"indexInLibrary": 1,
+			"visible": true,
+			"spriteInfo": {}
+		},
+		{
+			"objName": "paddle3",
+			"scripts": [
+				[
+					20,
+					12,
+					[
+						[
+							"whenKeyPressed",
+							"up arrow"
+						],
+						[
+							"doForever",
+							[
+								[
+									"doIf",
+									[
+										"keyPressed:",
+										"up arrow"
+									],
+									[
+										[
+											"changeYposBy:",
+											20
+										]
+									]
+								]
+							]
+						]
+					]
+				],
+				[
+					18,
+					159,
+					[
+						[
+							"whenKeyPressed",
+							"down arrow"
+						],
+						[
+							"doForever",
+							[
+								[
+									"doIf",
+									[
+										"keyPressed:",
+										"down arrow"
+									],
+									[
+										[
+											"changeYposBy:",
+											-20
+										]
+									]
+								]
+							]
+						]
+					]
+				],
+				[
+					306,
+					22,
+					[
+						[
+							"whenGreenFlag"
+						],
+						[
+							"gotoX:y:",
+							198,
+							0
+						],
+						[
+							"doForever",
+							[
+								[
+									"bounceOffEdge"
+								],
+								[
+									"heading:",
+									180
+								]
+							]
+						]
+					]
+				]
+			],
+			"sounds": [
+				{
+					"soundName": "pop",
+					"soundID": -1,
+					"md5": "83a9787d4cb6f3b7632b4ddfebf74367.wav",
+					"sampleCount": 258,
+					"rate": 11025,
+					"format": ""
+				}
+			],
+			"costumes": [
+				{
+					"costumeName": "button3-a",
+					"baseLayerID": -1,
+					"baseLayerMD5": "d2866ed0baddbd8da0c25a4199214c2c.svg",
+					"bitmapResolution": 1,
+					"rotationCenterX": 57,
+					"rotationCenterY": 13
+				}
+			],
+			"currentCostumeIndex": 0,
+			"scratchX": 198,
+			"scratchY": 0,
+			"scale": 1,
+			"direction": 180,
+			"rotationStyle": "normal",
+			"isDraggable": false,
+			"indexInLibrary": 3,
+			"visible": true,
+			"spriteInfo": {}
+		},
+		{
+			"target": "Stage",
+			"cmd": "getVar:",
+			"param": "LEFT PLAYER",
+			"color": 15629590,
+			"label": "LEFT PLAYER",
+			"mode": 2,
+			"sliderMin": 0,
+			"sliderMax": 100,
+			"isDiscrete": true,
+			"x": -1,
+			"y": -3,
+			"visible": true
+		},
+		{
+			"target": "Stage",
+			"cmd": "getVar:",
+			"param": "RIGHT PLAYER",
+			"color": 15629590,
+			"label": "RIGHT PLAYER",
+			"mode": 2,
+			"sliderMin": 0,
+			"sliderMax": 100,
+			"isDiscrete": true,
+			"x": 430,
+			"y": -4,
+			"visible": true
+		},
+		{
+			"target": "Stage",
+			"cmd": "getVar:",
+			"param": "Double ball",
+			"color": 15629590,
+			"label": "Double ball",
+			"mode": 1,
+			"sliderMin": 0,
+			"sliderMax": 100,
+			"isDiscrete": true,
+			"x": 5,
+			"y": 34,
+			"visible": false
+		},
+		{
+			"target": "Stage",
+			"cmd": "getVar:",
+			"param": "Triple Ball",
+			"color": 15629590,
+			"label": "Triple Ball",
+			"mode": 1,
+			"sliderMin": 0,
+			"sliderMax": 100,
+			"isDiscrete": true,
+			"x": 5,
+			"y": 113,
+			"visible": false
+		},
+		{
+			"target": "Stage",
+			"cmd": "getVar:",
+			"param": "Speed",
+			"color": 15629590,
+			"label": "Speed",
+			"mode": 1,
+			"sliderMin": 0,
+			"sliderMax": 100,
+			"isDiscrete": true,
+			"x": 5,
+			"y": 59,
+			"visible": true
+		}
+	],
+	"info": {
+		"hasCloudData": false,
+		"projectID": "72900730",
+		"swfVersion": "v439",
+		"spriteCount": 3,
+		"flashVersion": "MAC 18,0,0,209",
+		"scriptCount": 12,
+		"userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36",
+		"videoOn": false
+	}
+}

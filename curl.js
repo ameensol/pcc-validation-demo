@@ -14,5 +14,5 @@ Scratch.createUserSession('redleader', '5paceBAR', function(err, user) {
 
 Scratch.getProject(72900730, function (err, project) {
   console.log(project)
-  fs.writeFileSync('./project.json', JSON.stringify(project))
+  fs.writeFileSync('./project.json', JSON.stringify(project, null, '\t'))
 })
